@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>P2P Codeception</title>
+
+		<meta name="description" content="A peer-to-peer presentation about Codeception">
+		<meta name="author" content="Tom Van Herreweghe">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+			section .subtitle {
+				color:#42affa;
+				font-size:1.1em;
+			}
+
+			section .smaller {
+				font-size:0.9em;
+			}
+
+			section h1.fit {
+				font-size:1.5em;
+				white-space: nowrap;
+			}
+			section ul.custom {
+				list-style: none outside none;
+			}
+			section span.comment {
+				color:#aaaaaa;
+			}
+			section div.arrow-right {
+				width: 0; 
+				height: 0; 
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+
+				border-left: 10px solid #42affa;
+				float:left;
+				margin-right:8px;
+				margin-top:10px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section id="home" data-background-image="img/codeception.png">
+				</section>
+
+				<section id="intro">
+					<section data-background-image="img/testing-pyramid.png">
+						<aside class="notes">
+							<ul>
+								<li>Wie was er vorige keer? Afbeelding schaamteloos overgenomen van Bert</li>
+								<li>Wie schrijft unit tests?</li>
+								<li>Wie schrijft integration tests?</li>
+								<li>Wie schrijft functional tests?</li>
+								<li>Wie schrijft acceptance tests?</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section id="codeception">
+					<section>
+						<h1>Testing framework</h1>
+					</section>
+					<section>
+						<h1>Built on PHPUnit</h1>
+					</section>
+					<section>
+						<h1>Supports all layers of the pyramid</h1>
+						<h2 class="subtitle">unit / integration / functional / acceptance</h2>
+					</section>
+					<section>
+						<h1 class="fit"><a href="http://codeception.com">http://codeception.com</a></h1>
+					</section>
+				</section>
+
+				<section id="integrate">
+					<section>
+						<h1>1. Download</h1>
+						<pre><code data-trim data-noescape>
+$ composer require [--dev] codeception/codeception
+						</code></pre>
+
+						<p class="fragment subtitle smaller">
+							(or with PHAR)
+						</p>
+					</section>
+					<section>
+						<h1>2. Install</h1>
+						<pre><code data-trim data-noescape>
+$ vendor/bin/codecept bootstrap [--empty]
+						</code></pre>
+
+						<ul class="fragment subtitle smaller custom">
+							<li><div class="arrow-right"></div>tests/</li>
+							<li><div class="arrow-right"></div>codeception.yml</li>
+							<li><div class="arrow-right"></div>unit / functional / acceptance tests suites</li>
+						</ul>
+					</section>
+					<section>
+						<h1>3. Run</h1>
+						<pre><code data-trim data-noescape>
+$ vendor/bin/codecept run [<em>suite</em>]
+						</code></pre>
+						<pre class="fragment"><code data-trim data-noescape>
+$ vendor/bin/codecept run unit
+						</code></pre>
+					</section>
+				</section>
+
+				<section id="concepts">
+					<section>
+						<h1>Actors</h1>
+						<p class="subtitle smaller">
+							Representation of tests as actions of a person
+						</p>
+						<p class="fragment subtitle smaller">(BDD anyone?)</p>
+					</section>
+					<section>
+						<h1>Actors</h1>
+						<p class="subtitle smaller">
+							Actor classes are generated
+						</p>
+					</section>
+					<section>
+						<h1>Actors</h1>
+						<p class="subtitle smaller">
+							Functionality comes from Modules
+						</p>
+						<ul class="fragment subtitle smaller custom">
+							<li><div class="arrow-right"></div>Doctrine2</li>
+							<li><div class="arrow-right"></div>Symfony2</li>
+							<li><div class="arrow-right"></div>RabbitMQ</li>
+							<li><div class="arrow-right"></div>&hellip;</li>
+						</ul>
+						<aside class="notes">
+							31 modules
+						</aside>
+					</section>
+					<section>
+						<h1>Actors</h1>
+						<p class="subtitle smaller">
+							Configure in suite config
+						</p>
+						<ul class="subtitle smaller custom">
+							<li><div class="arrow-right"></div>tests/<em>suite</em>.suite.yml</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Scenario</h1>
+						<p class="subtitle smaller">
+							Tests; BDD-style
+						</p>
+						<p class="fragment subtitle smaller">
+							(Optional for low-level tests)
+						</p>
+					</section>
+					<section>
+						<h1>Test formats</h1>
+						<ul class="fragment subtitle smaller custom">
+							<li><div class="arrow-right"></div>PHPUnit <span class="comment">// you should know.. :p</span></li>
+							<li><div class="arrow-right"></div>Cept <span class="comment">// scenario-based</span></li>
+							<li><div class="arrow-right"></div>Cest <span class="comment">// OO scenario-based; multiple scenario's grouped</span></li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-background-image="img/demo-time.gif">
+				</section>
+
+				<section>
+					<video class="stretch" data-autoplay src="video/selenium-docker-codeception2.mp4"></video>
+				</section>
+
+				<section>
+					<h1>One last thing&hellip;</h1>
+					<p class="fragment subtitle smaller">
+						Environments
+					</p>
+				</section>
+
+				<section>
+					<h1><a href="https://joind.in/talk/cb241">https://joind.in/talk/cb241</a></h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
